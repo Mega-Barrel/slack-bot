@@ -1,0 +1,9 @@
+
+# env folder
+env/
+
+# credential file
+.env
+
+# pycache file
+__pycache__/
