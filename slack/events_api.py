@@ -32,13 +32,19 @@ def handle_message(event_data):
     """
     message = event_data.get('event', {})
     if message.get("subtype") is None and "hi" in message.get('text'):
-        user_id = message["user"]
-        user_name = slack_client.users_info(user=user_id)
-        channel = message["channel"]
-        message = f"Hello {user_name['user']['name']}! :tada:"
-        slack_client.chat_postMessage(channel=channel, text=message)
+        print(message['text'])
+        # user_name = slack_client.users_info(user=user_id)
+        # channel = message["channel"]
+        # message = f"Hello {user_name['user']['name']}! :tada:"
+        # slack_client.chat_postMessage(channel=channel, text=message)
     else:
+        user_id = message["user"]
+        channel_id = message["channel"]
         print(event_data)
+        print()
+        print(slack_client.users_info(user=user_id))
+        print()
+        print(slack_client.conversations_info(channel=channel_id))
 
 if __name__ == '__main__':
     app.run(debug=True)
